@@ -8,9 +8,12 @@ namespace SpeechTimer.Controllers
 {
     public class TimerController : Controller
     {
-        //
-        // GET: /Timer/
         public ActionResult Index()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Countdown()
         {
             return View();
         }
