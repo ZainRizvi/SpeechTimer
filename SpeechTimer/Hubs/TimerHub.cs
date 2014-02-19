@@ -8,9 +8,9 @@ namespace SpeechTimer.Hubs
 {
     public class TimerHub : Hub
     {
-        public void Hello()
+        public void SetCountdownTime()
         {
-            Clients.All.hello();
+            Clients.All.setCountdownTime();
         }
     }
 }
