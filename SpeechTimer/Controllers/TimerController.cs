@@ -14,5 +14,10 @@ namespace SpeechTimer.Controllers
         {
             return View();
         }
+
+        public ActionResult Controls()
+        {
+            return View();
+        }
 	}
 }
