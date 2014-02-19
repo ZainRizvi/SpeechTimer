@@ -59,4 +59,6 @@ $(document).ready(function () {
         timer.set({ time: 1000, autostart: true });
 
     });
+
+    //$(".dial").knob();
 });
