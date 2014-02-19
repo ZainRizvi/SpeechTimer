@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "TimerIndex";
+}
+
+@{
+    <script src="~/Scripts/jquery.timer.js"></script>
+    <script src="~/Scripts/Timer/Index.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Time Remaining:</h2>
+        <h3 id="counter"></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <input id="inHours" type="number" name="hours" /> hours
+        <input id="inMinutes" type="number" name="minutes" /> minutes
+        <input id="inSeconds" type="number" name="seconds" /> seconds
+        <input id="submitTime" type="button" name="Set Countdown" value="Set Countdown"/>
+    </div>
+</div>
