@@ -3,7 +3,7 @@
     ViewBag.Title = "TimerIndex";
 }
 
-@{
+@section scripts{
     <script src="~/Scripts/jquery.timer.js"></script>
     <!--Reference the SignalR library. -->
     <script src="~/Scripts/jquery.signalR-2.0.2.min.js"></script>
@@ -17,5 +17,6 @@
         <h2>Time Remaining:</h2>
         <h3 id="counter"></h3>
         @*<input type="text" class="dial" data-min="0" data-max="59" name="seconds" id="seconds" />*@
+        <div>Session Code: <span id="sessionCode"></span></div>
     </div>
 </div>

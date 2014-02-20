@@ -18,6 +18,11 @@
         <h2>Time Remaining:</h2>
         <h3 id="counter"></h3>
     </div>
+    <div class="col-md-4">
+        Session Code: <input id="sessionCode" type="text" name="sessionCode" />
+        <input id="currentSessionCode" type="hidden" name="sessionCode" />
+        <input id="setSessionCode" type="button" value="Set"/>
+    </div>
 </div>
 
 @section scripts {
@@ -30,33 +35,5 @@
     <script src="~/Scripts/Timer/Helper.js"></script>
 
     <!--SignalR script to update the countdown timer and send messages.-->
-    <script>
-
-        $(function () {
-            // Reference the auto-generated proxy for the hub.
-            var chat = $.connection.timerHub;
-
-            //
-            // Functions that the hub can call back 
-            //
-            chat.client.setTimeRemaining = function (hours, minutes, seconds) {
-                $('#counter').html(toTimeSpan(hours, minutes, seconds));
-            };
-
-
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                $('#submitTime').click(function () {
-                    // Call the SendSetCountdownTime method on the hub. 
-                    chat.server.sendSetCountdownTime($("#inHours").val(), $("#inMinutes").val(), $("#inSeconds").val());
-                });
-                $('#pause').click(function () {
-                    chat.server.pauseTimer();
-                })
-                $('#resume').click(function () {
-                    chat.server.resumeTimer();
-                })
-            });
-        });
-    </script>
+    <script src="~/Scripts/Timer/Controls.js"></script>
 }

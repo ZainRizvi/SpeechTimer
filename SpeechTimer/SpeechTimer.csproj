@@ -164,6 +164,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Timer\Controller.js" />
+    <Content Include="Scripts\Timer\Controls.js" />
     <Content Include="Scripts\Timer\Helper.js" />
     <Content Include="Scripts\Timer\Countdown.js" />
     <Content Include="Scripts\_references.js" />

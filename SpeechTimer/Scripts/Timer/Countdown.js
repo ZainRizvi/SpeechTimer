@@ -8,6 +8,8 @@ $(document).ready(function () {
     var minutes = 2;
     var seconds = 5;
     var timerPaused = false;
+
+    setSessionCode();
     
     // Reference the auto-generated proxy for the hub.  
     var chat = $.connection.timerHub;
@@ -30,6 +32,9 @@ $(document).ready(function () {
 
     // Start the connection.
     $.connection.hub.start().done(function () {
+
+        // Register the session code with the server
+        chat.server.viewerJoinSession($("#sessionCode").text());
 
         // Start the countdown timer
         var timer = $.timer(function () {
@@ -54,7 +59,7 @@ $(document).ready(function () {
             $('#counter').html(toTimeSpan(hours, minutes, seconds));
 
             // Send time remaining to the controllers
-            chat.server.sendTimeRemaining(hours, minutes, seconds);
+            chat.server.sendTimeRemaining(hours, minutes, seconds, getSessionCode());
         });
         timer.set({ time: 1000, autostart: true });
 
@@ -62,3 +67,26 @@ $(document).ready(function () {
 
     //$(".dial").knob();
 });
+
+function setSessionCode() {
+    $("#sessionCode").text(randString(6));
+}
+
+function getSessionCode() {
+    return $("#sessionCode").text();
+}
+
+function randString(n) {
+    if (!n) {
+        n = 5;
+    }
+
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+    for (var i = 0; i < n; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
