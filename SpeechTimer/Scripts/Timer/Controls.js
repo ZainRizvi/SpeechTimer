@@ -1,6 +1,8 @@
 ﻿
 
 $(function () {
+    $(".dial").knob();
+
     // Reference the auto-generated proxy for the hub.
     var chat = $.connection.timerHub;
 

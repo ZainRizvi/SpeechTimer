@@ -2,11 +2,13 @@
 $.getScript("/Scripts/Timer/Helper.js");
 
 $(document).ready(function () {
+    // Enable the knobs
+    $(".dial").knob();
 
     var count = 0;
     var hours = 0;
-    var minutes = 2;
-    var seconds = 5;
+    var minutes = 3;
+    var seconds = 30;
     var timerPaused = false;
 
     setSessionCode();
@@ -57,6 +59,7 @@ $(document).ready(function () {
             }
 
             $('#counter').html(toTimeSpan(hours, minutes, seconds));
+            setTime(hours, minutes, seconds);
 
             // Send time remaining to the controllers
             chat.server.sendTimeRemaining(hours, minutes, seconds, getSessionCode());
@@ -65,11 +68,17 @@ $(document).ready(function () {
 
     });
 
-    //$(".dial").knob();
+    
 });
 
+function setTime(hours, minutes, seconds) {
+    $("#hours").val(hours).trigger('change');
+    $("#minutes").val(minutes).trigger('change');
+    $("#seconds").val(seconds).trigger('change');
+}
+
 function setSessionCode() {
-    $("#sessionCode").text(randString(6));
+    $("#sessionCode").text(randString(4));
 }
 
 function getSessionCode() {

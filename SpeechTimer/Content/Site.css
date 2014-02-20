@@ -40,3 +40,16 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.float-left {
+    float: left;
+}
+
+.float-container {
+    overflow: hidden;
+}
+
+div.knob-container {
+    margin: 10px;
+}
+

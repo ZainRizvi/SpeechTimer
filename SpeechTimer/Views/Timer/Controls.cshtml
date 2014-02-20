@@ -3,28 +3,6 @@
     ViewBag.Title = "Controls";
 }
 
-<h2>Controls</h2>
-
-<div class="row">
-    <div class="col-md-4">
-        <input id="inHours" type="number" name="hours" /> hours
-        <input id="inMinutes" type="number" name="minutes" /> minutes
-        <input id="inSeconds" type="number" name="seconds" /> seconds
-        <input id="submitTime" type="button" name="Set Countdown" value="Set Countdown" />
-        <input id="pause" type="button" value="Pause" />
-        <input id="resume" type="button" value="Resume" />
-    </div>
-    <div class="col-md-4">
-        <h2>Time Remaining:</h2>
-        <h3 id="counter"></h3>
-    </div>
-    <div class="col-md-4">
-        Session Code: <input id="sessionCode" type="text" name="sessionCode" />
-        <input id="currentSessionCode" type="hidden" name="sessionCode" />
-        <input id="setSessionCode" type="button" value="Set"/>
-    </div>
-</div>
-
 @section scripts {
     <!--Script references. -->
     <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
@@ -34,6 +12,41 @@
     <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/Timer/Helper.js"></script>
 
+    <script src="~/Scripts/jquery.timer.js"></script>
+
     <!--SignalR script to update the countdown timer and send messages.-->
     <script src="~/Scripts/Timer/Controls.js"></script>
 }
+
+<h2>Controls</h2>
+
+<div class="row">
+    <div class="col-md-4 float-container">
+        <div class="float-left knob-container">
+            <h4>Hours</h4>
+            <input id="inHours" type="text" class="dial" data-min="0" data-max="5" name="hours" /> 
+        </div>
+        <div class="float-left knob-container">
+            <h4>Minutes</h4>
+            <input id="inMinutes" type="text" class="dial" data-min="0" data-max="59" name="minutes" />
+        </div>
+        <div class="float-left knob-container">
+            <h4>Seconds</h4>
+            <input id="inSeconds" type="text" class="dial" data-min="0" data-max="59" name="seconds" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <input id="submitTime" type="button" name="Set Countdown" value="Set Countdown" />
+        <input id="pause" type="button" value="Pause" />
+        <input id="resume" type="button" value="Resume" />
+    </div>
+    <div class="col-md-4" >
+        <h2>Time Remaining:</h2>
+        <h3 id="counter"></h3>
+    </div>
+    <div class="col-md-4">
+        Session Code: <input id="sessionCode" type="text" name="sessionCode" />
+        <input id="currentSessionCode" type="hidden" name="sessionCode" />
+        <input id="setSessionCode" type="button" value="Set"/>
+    </div>
+</div>
