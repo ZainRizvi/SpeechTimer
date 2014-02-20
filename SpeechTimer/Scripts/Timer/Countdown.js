@@ -91,7 +91,7 @@ function randString(n) {
     }
 
     var text = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var possible = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789';
 
     for (var i = 0; i < n; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
