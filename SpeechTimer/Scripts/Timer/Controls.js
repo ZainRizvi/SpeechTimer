@@ -1,7 +1,9 @@
 ﻿
 
 $(function () {
+
     $(".dial").knob();
+    resizeKnob();
 
     // Reference the auto-generated proxy for the hub.
     var chat = $.connection.timerHub;
@@ -33,6 +35,16 @@ $(function () {
         })
         $('#resume').click(function () {
             chat.server.resumeTimer(getSessionCode());
+
+            //$('.dial')
+            //    .trigger(
+            //        'configure',
+            //        {
+            //            "skin": "tron",
+            //            "width": 100,
+            //            "height": 100
+            //        }
+            //    );
         })
         $('#setSessionCode').click(function () {
             var newSessionCode = $("#sessionCode").val();
@@ -42,6 +54,20 @@ $(function () {
         })
     });
 });
+
+$(window).resize(resizeKnob);
+
+function resizeKnob() {
+    var knobSideLenght = Math.min($("#controls-container").innerWidth() / 3.5, 200);
+
+    $('.dial').trigger(
+        'configure',
+        {
+            "width": knobSideLenght,
+            "height": knobSideLenght
+        }
+    );
+}
 
 function getSessionCode() {
     return $("#currentSessionCode").val();
