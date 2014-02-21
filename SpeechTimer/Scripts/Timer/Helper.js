@@ -10,3 +10,7 @@ function toDoubleDigits(number) {
 function toTimeSpan(hours, minutes, seconds) {
     return toDoubleDigits(hours) + ":" + toDoubleDigits(minutes) + ":" + toDoubleDigits(seconds)
 }
+
+function getSecondsInTime(hours, minutes, seconds) {
+    return seconds + (minutes * 60) + (hours * 3600);
+}

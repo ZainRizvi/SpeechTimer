@@ -1,14 +1,20 @@
 ﻿
 $.getScript("/Scripts/Timer/Helper.js");
 
+var hoursStart = 0;
+var minutesStart = 2;
+var secondsStart = 15;
+
 $(document).ready(function () {
     // Enable the knobs
     $(".dial").knob();
 
     var count = 0;
-    var hours = 0;
-    var minutes = 3;
-    var seconds = 30;
+
+    var hours = hoursStart;
+    var minutes = minutesStart;
+    var seconds = secondsStart;
+
     var timerPaused = false;
 
     setSessionCode();
@@ -18,9 +24,9 @@ $(document).ready(function () {
 
     // Create a function that the hub can call back to set the countdown time.
     chat.client.setCountdownTime = function (hoursIn, minutesIn, secondsIn) {
-        hours = hoursIn;
-        minutes = minutesIn;
-        seconds = secondsIn;
+        hours = hoursStart = hoursIn;
+        minutes = minutesStart = minutesIn;
+        seconds = secondsStart = secondsIn;
         timerPaused = false;
     };
 
@@ -63,6 +69,7 @@ $(document).ready(function () {
 
             // Send time remaining to the controllers
             chat.server.sendTimeRemaining(hours, minutes, seconds, getSessionCode());
+
         });
         timer.set({ time: 1000, autostart: true });
 
@@ -75,6 +82,8 @@ function setTime(hours, minutes, seconds) {
     $("#hours").val(hours).trigger('change');
     $("#minutes").val(minutes).trigger('change');
     $("#seconds").val(seconds).trigger('change');
+
+    $('#rectangle').width($("#rectangle").parent().outerWidth() * getSecondsInTime(hours, minutes, seconds) / getSecondsInTime(hoursStart, minutesStart, secondsStart));
 }
 
 function setSessionCode() {
