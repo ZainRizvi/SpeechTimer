@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Controls";
 }
 
@@ -21,32 +20,38 @@
 <h2>Controls</h2>
 
 <div class="row">
-    <div class="col-md-4 float-container">
-        <div class="float-left knob-container">
-            <h4>Hours</h4>
-            <input id="inHours" type="text" class="dial" data-min="0" data-max="5" name="hours" /> 
-        </div>
-        <div class="float-left knob-container">
-            <h4>Minutes</h4>
-            <input id="inMinutes" type="text" class="dial" data-min="0" data-max="59" name="minutes" />
-        </div>
-        <div class="float-left knob-container">
-            <h4>Seconds</h4>
-            <input id="inSeconds" type="text" class="dial" data-min="0" data-max="59" name="seconds" />
-        </div>
+    <div class="col-sm-4">
+        <h4>Hours</h4>
+        <input id="inHours" type="text" class="dial" data-min="0" data-max="5" name="hours" />
     </div>
-    <div class="col-md-4">
-        <input id="submitTime" type="button" name="Set Countdown" value="Set Countdown" />
-        <input id="pause" type="button" value="Pause" />
-        <input id="resume" type="button" value="Resume" />
+    <div class="col-sm-4">
+        <h4>Minutes</h4>
+        <input id="inMinutes" type="text" class="dial" data-min="0" data-max="59" name="minutes" />
     </div>
-    <div class="col-md-4" >
+    <div class="col-sm-4">
+        <h4>Seconds</h4>
+        <input id="inSeconds" type="text" class="dial" data-min="0" data-max="59" name="seconds" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <input id="submitTime" class="btn btn-default" type="button" name="Set Countdown" value="Set Countdown" />
+        <input id="pause" class="btn btn-default" type="button" value="Pause" />
+        <input id="resume" class="btn btn-default" type="button" value="Resume" />
+    </div>
+</div>
+<div class="row">
+    <div>
         <h2>Time Remaining:</h2>
         <h3 id="counter"></h3>
     </div>
-    <div class="col-md-4">
-        Session Code: <input id="sessionCode" type="text" name="sessionCode" />
-        <input id="currentSessionCode" type="hidden" name="sessionCode" />
-        <input id="setSessionCode" type="button" value="Set"/>
-    </div>
+</div>
+<div class="row">
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="SessionCode">Session Code: </label> <input id="sessionCode" class="form-control" type="text" name="sessionCode" />
+            <input id="setSessionCode" class="btn btn-default" type="button" value="Set" />
+        </div>
+    </form>
+    <input id="currentSessionCode" type="hidden" name="sessionCode" />
 </div>

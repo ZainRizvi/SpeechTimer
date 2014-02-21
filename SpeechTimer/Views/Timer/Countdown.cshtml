@@ -13,23 +13,30 @@
 }
 
 <div class="row">
-    <div class="col-md-4">
+    <div>
         <h2>Time Remaining:</h2>
-        <div class="float-container">
-            <div class="float-left knob-container">
+        
+        <div class="row">
+            <div class="col-sm-4" >
                 <h4>Hours</h4>
                 <input id="hours" type="text" class="dial" data-min="0" data-max="5" name="hours" />
             </div>
-            <div class="float-left knob-container">
+            <div class="col-sm-4">
                 <h4>Minutes</h4>
                 <input id="minutes" type="text" class="dial" data-min="0" data-max="59" name="minutes" />
             </div>
-            <div class="float-left knob-container">
+            <div class="col-sm-4">
                 <h4>Seconds</h4>
                 <input id="seconds" type="text" class="dial" data-min="0" data-max="59" name="seconds" />
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <h3 id="counter"></h3>
-        <div>Session Code: <span id="sessionCode"></span></div>
+    </div>
+    <div class="col-md-12">
+        Session Code: <span id="sessionCode"></span>
     </div>
 </div>
