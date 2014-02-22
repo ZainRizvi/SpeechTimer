@@ -55,7 +55,7 @@ div.knob-container {
 
 div.rectangle {
     min-height: 50px;
-    background-color: #5cb85c; /* blue: #87CEEB;*/
+    background-color: #428bca; /* green: #5cb85c;*/ /* blue: #87CEEB;*/
     float: right;
 }
 

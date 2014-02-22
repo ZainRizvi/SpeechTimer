@@ -7,8 +7,16 @@ function toDoubleDigits(number) {
     }
 }
 
-function toTimeSpan(hours, minutes, seconds) {
-    return hours + ":" + toDoubleDigits(minutes) + ":" + toDoubleDigits(seconds)
+function toTimeSpan(hours, minutes, seconds)  {
+    var timeText;
+    if (hours > 0) {
+        timeText = hours + ":" + toDoubleDigits(minutes)
+    } else {
+        timeText = minutes;
+    }
+    timeText += ":" + toDoubleDigits(seconds)
+
+    return timeText;
 }
 
 function getSecondsInTime(hours, minutes, seconds) {

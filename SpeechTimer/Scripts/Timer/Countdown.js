@@ -116,6 +116,6 @@ $(window).resize(function () {
 });
 
 function resizeCountdownRectangle() {
-    var newHeight = $(window).height() / 2;
+    var newHeight = $(window).height() / 3;
     $("#rectangle").height(newHeight);
 }
