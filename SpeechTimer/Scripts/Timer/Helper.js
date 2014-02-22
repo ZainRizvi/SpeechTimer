@@ -8,7 +8,7 @@ function toDoubleDigits(number) {
 }
 
 function toTimeSpan(hours, minutes, seconds) {
-    return toDoubleDigits(hours) + ":" + toDoubleDigits(minutes) + ":" + toDoubleDigits(seconds)
+    return hours + ":" + toDoubleDigits(minutes) + ":" + toDoubleDigits(seconds)
 }
 
 function getSecondsInTime(hours, minutes, seconds) {

@@ -6,6 +6,7 @@ var minutesStart = 2;
 var secondsStart = 15;
 
 $(document).ready(function () {
+
     // Enable the knobs
     $(".dial").knob();
 
@@ -75,7 +76,7 @@ $(document).ready(function () {
 
     });
 
-    
+    resizeCountdownRectangle();    
 });
 
 function setTime(hours, minutes, seconds) {
@@ -107,4 +108,14 @@ function randString(n) {
     }
 
     return text;
+}
+
+    
+$(window).resize(function () {
+    resizeCountdownRectangle();
+});
+
+function resizeCountdownRectangle() {
+    var newHeight = $(window).height() / 2;
+    $("#rectangle").height(newHeight);
 }

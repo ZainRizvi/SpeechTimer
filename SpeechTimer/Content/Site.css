@@ -55,10 +55,17 @@ div.knob-container {
 
 div.rectangle {
     min-height: 50px;
-    background-color: #87CEEB;
+    background-color: #5cb85c; /* blue: #87CEEB;*/
     float: right;
 }
 
 div.controls-container {
    
+}
+
+.top-buffer {
+    margin-top: 20px;
+}
+.left-buffer {
+    margin-left: 10px;
 }
