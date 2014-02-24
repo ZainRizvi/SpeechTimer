@@ -21,11 +21,18 @@ namespace SpeechTimer
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/external").Include(
-                      "~/Scripts/jquery.knob.js"));
+                      "~/Scripts/jquery.knob.js",
+                      "~/Scripts/jquery.timer.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/countdown").Include(
+                      "~/Scripts/Timer/Helper.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/minimal").Include(
+                      "~/Content/minimal.css"));
         }
     }
 }

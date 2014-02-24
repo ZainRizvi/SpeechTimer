@@ -1,9 +1,13 @@
 ﻿
-$.getScript("/Scripts/Timer/Helper.js");
-
 var hoursStart = 0;
 var minutesStart = 2;
 var secondsStart = 15;
+
+var hours;
+var minutes;
+var seconds;
+
+var timerPaused = false;
 
 $(document).ready(function () {
 
@@ -12,12 +16,10 @@ $(document).ready(function () {
 
     var count = 0;
 
-    var hours = hoursStart;
-    var minutes = minutesStart;
-    var seconds = secondsStart;
-
-    var timerPaused = false;
-
+    hours = hoursStart;
+    minutes = minutesStart;
+    seconds = secondsStart;
+    
     setSessionCode();
     
     // Reference the auto-generated proxy for the hub.  
@@ -66,7 +68,7 @@ $(document).ready(function () {
             }
 
             $('#counter').html(toTimeSpan(hours, minutes, seconds));
-            setTime(hours, minutes, seconds);
+            displayTimeLeft(hours, minutes, seconds);
 
             // Send time remaining to the controllers
             chat.server.sendTimeRemaining(hours, minutes, seconds, getSessionCode());
@@ -76,15 +78,20 @@ $(document).ready(function () {
 
     });
 
-    resizeCountdownRectangle();    
+    turnOnMinimalistMode();
+    resizeCountdownRectangle();
+    //$("#toggleMinimalist").click(toggleMinimalistMode);
+
 });
 
-function setTime(hours, minutes, seconds) {
-    $("#hours").val(hours).trigger('change');
-    $("#minutes").val(minutes).trigger('change');
-    $("#seconds").val(seconds).trigger('change');
+function displayTimeLeft(hours, minutes, seconds) {
+    //$("#hours").val(hours).trigger('change');
+    //$("#minutes").val(minutes).trigger('change');
+    //$("#seconds").val(seconds).trigger('change');
 
-    $('#rectangle').width($("#rectangle").parent().outerWidth() * getSecondsInTime(hours, minutes, seconds) / getSecondsInTime(hoursStart, minutesStart, secondsStart));
+
+    //$('#rectangle').width($("#rectangle").parent().outerWidth() * getSecondsInTime(hours, minutes, seconds) / getSecondsInTime(hoursStart, minutesStart, secondsStart));
+    resizeCountdownRectangle();
 }
 
 function setSessionCode() {
@@ -110,12 +117,35 @@ function randString(n) {
     return text;
 }
 
+
+function resizeCountdownRectangle() {
+    var newHeight = $(window).height() / 3;
+    $("#rectangle").height(newHeight);
+
+    //var hours = $("#hours").val();
+    //var minutes = $("#minutes").val();
+    //var seconds = $("#seconds").val();
+
+    $('#rectangle').width($("#rectangle").parent().outerWidth() * getSecondsInTime(hours, minutes, seconds) / getSecondsInTime(hoursStart, minutesStart, secondsStart));
+}
     
 $(window).resize(function () {
     resizeCountdownRectangle();
 });
 
-function resizeCountdownRectangle() {
-    var newHeight = $(window).height() / 3;
-    $("#rectangle").height(newHeight);
+var minimalistMode = false;
+function toggleMinimalistMode() {
+    if (minimalistMode) {
+        $("#minimalCss").remove();
+        //$("#toggleMinimalist").html("Minimalist Mode: Off");
+    } else {
+        turnOnMinimalistMode();
+    }
+
+    minimalistMode = !minimalistMode;
+}
+
+function turnOnMinimalistMode() {
+    $('head').append('<link href="/Content/Minimal.css" rel="stylesheet" id="minimalCss" />');
+    //$("#toggleMinimalist").html("Minimalist Mode: On");
 }

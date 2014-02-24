@@ -1,0 +1,26 @@
+﻿body {
+    background-color: black;
+    color: white;
+}
+
+.non-minimal {
+    display: none;
+}
+
+
+.btn-default {
+  color: #EEEEEE;
+  background-color: #000000;
+  border-color: #cccccc;
+}
+
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #EEEEEE;
+  background-color: #141414;
+  border-color: #adadad;
+}

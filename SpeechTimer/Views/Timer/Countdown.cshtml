@@ -11,19 +11,5 @@
     <script src="~/Scripts/Timer/Countdown.js"></script>
 }
 
-<div class="row">
-    <div class="top-buffer">
-        <p class="h1">Time Remaining: <span id="counter" class="h1"></span></p>
-    </div>
-</div>
-<div class="row">
-    
-</div>
-<div class="row">
-    <div class="rectangle" id="rectangle"></div>
-</div>
-<div class="row">
-    <div class="top-buffer">
-        Session Code: <span id="sessionCode"></span>
-    </div>
-</div>
+@Html.Partial("_Timer")
+
