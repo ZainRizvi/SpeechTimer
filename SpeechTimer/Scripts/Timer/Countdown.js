@@ -10,6 +10,10 @@ var seconds;
 var timerPaused = false;
 
 $(document).ready(function () {
+    initializeCountdown();
+});
+
+function initializeCountdown() {
 
     // Enable the knobs
     $(".dial").knob();
@@ -19,9 +23,9 @@ $(document).ready(function () {
     hours = hoursStart;
     minutes = minutesStart;
     seconds = secondsStart;
-    
+
     setSessionCode();
-    
+
     // Reference the auto-generated proxy for the hub.  
     var chat = $.connection.timerHub;
 
@@ -81,8 +85,7 @@ $(document).ready(function () {
     turnOnMinimalistMode();
     resizeCountdownRectangle();
     //$("#toggleMinimalist").click(toggleMinimalistMode);
-
-});
+}
 
 function displayTimeLeft(hours, minutes, seconds) {
     //$("#hours").val(hours).trigger('change');

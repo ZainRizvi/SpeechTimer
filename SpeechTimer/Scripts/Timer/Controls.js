@@ -1,6 +1,10 @@
 ﻿
 
 $(function () {
+    initializeControls();
+});
+
+function initializeControls() {
 
     $(".dial").knob();
     resizeKnob();
@@ -53,7 +57,8 @@ $(function () {
             setSessionCode(newSessionCode);
         })
     });
-});
+
+}
 
 $(window).resize(resizeKnob);
 

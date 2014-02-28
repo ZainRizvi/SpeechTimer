@@ -22,5 +22,10 @@ namespace SpeechTimer.Controllers
         {
             return View();
         }
+
+        public ActionResult SinglePage()
+        {
+            return View();
+        }
 	}
 }

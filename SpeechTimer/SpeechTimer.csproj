@@ -187,6 +187,8 @@
     <Content Include="Views\Timer\Countdown.cshtml" />
     <Content Include="Views\Timer\Controls.cshtml" />
     <Content Include="Views\Timer\_Timer.cshtml" />
+    <Content Include="Views\Timer\SinglePage.cshtml" />
+    <Content Include="Views\Timer\_Controls.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
