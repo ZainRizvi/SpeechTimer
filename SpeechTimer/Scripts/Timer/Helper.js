@@ -22,3 +22,15 @@ function toTimeSpan(hours, minutes, seconds)  {
 function getSecondsInTime(hours, minutes, seconds) {
     return seconds + (minutes * 60) + (hours * 3600);
 }
+
+function setSessionCode(code) {
+    $("#sessionCode").text(code);
+}
+
+function getSessionCode() {
+    return $("#sessionCode").text();
+}
+
+function getNewSessionCode() {
+    return randString(4);
+}
