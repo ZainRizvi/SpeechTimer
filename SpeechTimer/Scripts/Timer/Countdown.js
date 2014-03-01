@@ -1,4 +1,6 @@
-﻿
+﻿var hoursStart = 0;
+var minutesStart = 2;
+var secondsStart = 15;
 
 var hoursLeft;
 var minutesLeft;
@@ -14,10 +16,6 @@ function initializeCountdown() {
 
     // Enable the knobs
     $(".dial").knob();
-
-    var hoursStart = 0;
-    var minutesStart = 2;
-    var secondsStart = 15;
 
     hoursLeft = hoursStart;
     minutesLeft = minutesStart;
@@ -68,7 +66,7 @@ function startCountdownTimer() {
         displayTimeLeft(hoursLeft, minutesLeft, secondsLeft);
 
         // Send time remaining to the controllers
-        timerHub.server.sendTimeRemaining(hoursLeft, minutesLeft, secondsLeft, getSessionCode());
+        $.connection.timerHub.server.sendTimeRemaining(hoursLeft, minutesLeft, secondsLeft, getSessionCode());
 
     });
     timer.set({ time: 1000, autostart: true });
