@@ -30,7 +30,7 @@ $(document).ready(function () {
     $.connection.hub.start().done(function () {
 
         // Register the session code with the server
-        timerHub.server.viewerJoinSession($("#sessionCode").text());
+        timerHub.server.joinSession(getSessionCode(), "");
 
         startCountdownTimer();
 
@@ -66,7 +66,7 @@ function startCountdownTimer() {
         displayTimeLeft(hoursLeft, minutesLeft, secondsLeft);
 
         // Send time remaining to the controllers
-        //$.connection.timerHub.server.sendTimeRemaining(hoursLeft, minutesLeft, secondsLeft, getSessionCode());
+        $.connection.timerHub.server.sendTimeRemaining(hoursLeft, minutesLeft, secondsLeft, getSessionCode());
 
     });
     timer.set({ time: 1000, autostart: true });
@@ -90,29 +90,23 @@ function setCountdownCallbacks(timerHub) {
     }
 }
 
-function displayTimeLeft(hoursLeft, minutesLeft, secondsLeft) {
-    //$("#hoursLeft").val(hoursLeft).trigger('change');
-    //$("#minutesLeft").val(minutesLeft).trigger('change');
-    //$("#secondsLeft").val(secondsLeft).trigger('change');
+function setControlsCallbacks(hub) {
+    hub.client.setTimeRemaining = function (hours, minutes, seconds) {
+        hoursLeft = hours;
+        minutesLeft = minutes;
+        secondsLeft = seconds;
 
+        $('#counter').html(toTimeSpan(hours, minutes, seconds));
+    };
 
-    //$('#rectangle').width($("#rectangle").parent().outerWidth() * getSecondsInTime(hoursLeft, minutesLeft, secondsLeft) / getSecondsInTime(hoursStart, minutesStart, secondsStart));
-    resizeCountdownRectangle();
+    hub.client.sessionCodeSetFailed = function () {
+        alert("Yikes! That session code wasn't quite right");
+    }
 }
 
-function randString(n) {
-    if (!n) {
-        n = 5;
-    }
-
-    var text = '';
-    var possible = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
-
-    for (var i = 0; i < n; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return text;
+function displayTimeLeft(hoursLeft, minutesLeft, secondsLeft) {
+    //$('#rectangle').width($("#rectangle").parent().outerWidth() * getSecondsInTime(hoursLeft, minutesLeft, secondsLeft) / getSecondsInTime(hoursStart, minutesStart, secondsStart));
+    resizeCountdownRectangle();
 }
 
 
@@ -170,22 +164,12 @@ function setupControlButtons() {
     });
 
     $('#setSessionCode').click(function () {
-        var newSessionCode = $("#setSessionCode").val()
+        var newSessionCode = $("#sessionCodeInput").val()
         //var newSessionCode = $("#sessionCode").text();
         var currentSessionCode = getSessionCode();
-        hub.server.controllerJoinSession(newSessionCode, currentSessionCode);
+        hub.server.joinSession(newSessionCode, currentSessionCode);
         setSessionCode(newSessionCode);
     });
-}
-
-function setControlsCallbacks(hub) {
-    hub.client.setTimeRemaining = function (hours, minutes, seconds) {
-        $('#counter').html(toTimeSpan(hours, minutes, seconds));
-    };
-
-    hub.client.sessionCodeSetFailed = function () {
-        alert("Yikes! That session code wasn't quite right");
-    }
 }
 
 $(window).resize(resizeKnob);

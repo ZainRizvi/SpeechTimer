@@ -11,55 +11,95 @@ namespace SpeechTimer.Hubs
         enum Type 
         {
             Controller,
-            Viewer
+            Viewer,
+            SingleView
         }
 
         const int sessionCodeLenght = 4;
-        const string validSessionCharacters = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+        const string validSessionCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+
+        private List<string> GetViewerGroups(string sessionCode)
+        {
+            List<string> viewers = new List<string>() {
+                GetGroupName(sessionCode, Type.Viewer),
+                GetGroupName(sessionCode, Type.SingleView)
+            };
+
+            return viewers;
+        }
+
+        private List<string> GetControllerGroups(string sessionCode)
+        {
+            List<string> viewers = new List<string>() {
+                GetGroupName(sessionCode, Type.Controller),
+                GetGroupName(sessionCode, Type.SingleView)
+            };
+
+            return viewers;
+        }
 
         #region Public Methods
 
         public void SendSetCountdownTime(int hours, int minutes, int seconds, string sessionCode)
         {
-            Clients.Group(GetGroupName(sessionCode, Type.Viewer))
+            Clients.Groups(GetViewerGroups(sessionCode))
                 .setCountdownTime(hours, minutes, seconds);
         }
 
         public void SendTimeRemaining(int hours, int minutes, int seconds, string sessionCode)
         {
-            Clients.Group(GetGroupName(sessionCode, Type.Controller))
+            List<string> receipients = GetControllerGroups(sessionCode);
+
+            Clients.Groups(receipients)
                 .setTimeRemaining(hours, minutes, seconds);
         }
 
         public void PauseTimer(string sessionCode)
         {
-            Clients.Group(GetGroupName(sessionCode, Type.Viewer)).pauseTimer();
+            Clients.Groups(GetViewerGroups(sessionCode)).pauseTimer();
         }
 
         public void ResumeTimer(string sessionCode)
         {
-            Clients.Group(GetGroupName(sessionCode, Type.Viewer)).resumeTimer();
+            Clients.Groups(GetViewerGroups(sessionCode)).resumeTimer();
         }
 
         public void ViewerJoinSession(string sessionCode)
         {
-            JoinSession(sessionCode, Type.Viewer);
+            JoinSessionWithType(sessionCode, Type.Viewer);
         }
 
         public void ControllerJoinSession(string sessionToJoin, string sessionToLeave)
         {
-            if (!JoinSession(sessionToJoin, Type.Controller))
+            if (!JoinSessionWithType(sessionToJoin, Type.Controller))
             {
                 Clients.Caller.sessionCodeSetFailed();
             }
-            Groups.Remove(Context.ConnectionId, GetGroupName(sessionToLeave, Type.Controller));
+            try
+            {
+                Groups.Remove(Context.ConnectionId, GetGroupName(sessionToLeave, Type.Controller));
+            }
+            catch { }
+        }
+
+        public void JoinSession(string sessionToJoin, string sessionToLeave)
+        {
+            if (!JoinSessionWithType(sessionToJoin, Type.SingleView))
+            {
+                Clients.Caller.sessionCodeSetFailed();
+            }
+            try
+            {
+                Groups.Remove(Context.ConnectionId, GetGroupName(sessionToLeave, Type.SingleView));
+            }
+            catch { }
         }
 
         #endregion
 
         #region Helper Methods
 
-        private bool JoinSession(string sessionCode, Type type)
+        private bool JoinSessionWithType(string sessionCode, Type type)
         {
             if (!IsValidSessionCode(sessionCode)) return false;
 
@@ -71,23 +111,16 @@ namespace SpeechTimer.Hubs
         {
             if (!IsValidSessionCode(sessionCode)) throw new Exception("Invalid session code");
 
-            const string viewerPrefix = "viewer-";
-            const string controllerPrefix = "controler-";
+            string name = string.Format("{0}-{1}", type, sessionCode);
 
-            switch (type)
-            {
-                case (Type.Controller): return controllerPrefix + sessionCode.ToLowerInvariant();
-                case (Type.Viewer): return viewerPrefix + sessionCode.ToLowerInvariant();
-            }
-
-            throw new Exception("Invalid type specified");
+            return name;
         }
 
         private bool IsValidSessionCode(string sessionCode)
         {
             // Drop invalid request
             if (string.IsNullOrEmpty(sessionCode)) return false;
-            if (sessionCode.Length != sessionCodeLenght) return false;
+            //if (sessionCode.Length != sessionCodeLenght) return false;
             if (!sessionCode.All(c => validSessionCharacters.Contains(c))) return false;
 
             return true;

@@ -1,4 +1,19 @@
 ﻿
+function randString(n) {
+    if (!n) {
+        n = 5;
+    }
+
+    var text = '';
+    var possible = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+
+    for (var i = 0; i < n; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
+
 function toDoubleDigits(number) {
     if (number < 10) {
         return "0" + number;
