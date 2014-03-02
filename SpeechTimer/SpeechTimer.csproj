@@ -168,6 +168,7 @@
     <Content Include="Scripts\Timer\Controls.js" />
     <Content Include="Scripts\Timer\Helper.js" />
     <Content Include="Scripts\Timer\Countdown.js" />
+    <Content Include="Scripts\Timer\SingleView.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
