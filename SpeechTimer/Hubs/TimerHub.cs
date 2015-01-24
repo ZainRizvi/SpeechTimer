@@ -14,7 +14,7 @@ namespace SpeechTimer.Hubs
             Viewer
         }
 
-        const int sessionCodeLenght = 4;
+        const int sessionCodeLenght = 2;
         const string validSessionCharacters = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
 
         #region Public Methods

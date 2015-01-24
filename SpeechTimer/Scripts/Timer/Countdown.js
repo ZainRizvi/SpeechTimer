@@ -30,7 +30,11 @@ $(document).ready(function () {
         hours = hoursStart = hoursIn;
         minutes = minutesStart = minutesIn;
         seconds = secondsStart = secondsIn;
-        timerPaused = false;
+        timerPaused = true;
+
+        $('#counter').html(toTimeSpan(hours, minutes, seconds));
+        displayTimeLeft(hours, minutes, seconds);
+
     };
 
     chat.client.pauseTimer = function () {
@@ -95,7 +99,7 @@ function displayTimeLeft(hours, minutes, seconds) {
 }
 
 function setSessionCode() {
-    $("#sessionCode").text(randString(4));
+    $("#sessionCode").text(randString(2));
 }
 
 function getSessionCode() {

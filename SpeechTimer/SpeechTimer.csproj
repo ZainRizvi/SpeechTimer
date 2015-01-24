@@ -154,7 +154,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\SpeechTimer %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\SpeechTimer.pubxml" />
+    <None Include="Properties\PublishProfiles\SpeechTimer__dev.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -168,6 +170,8 @@
     <Content Include="Scripts\Timer\Controls.js" />
     <Content Include="Scripts\Timer\Helper.js" />
     <Content Include="Scripts\Timer\Countdown.js" />
+    <Content Include="Scripts\Timer\jquery.countdown.js" />
+    <Content Include="Scripts\TimeSpan-1.2.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

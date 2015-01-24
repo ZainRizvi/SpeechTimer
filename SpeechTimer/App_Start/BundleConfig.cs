@@ -21,6 +21,7 @@ namespace SpeechTimer
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/external").Include(
+                      "~/Scripts/TimeSpan-1.2.js",
                       "~/Scripts/jquery.knob.js",
                       "~/Scripts/jquery.timer.js"));
 

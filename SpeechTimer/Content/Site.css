@@ -54,7 +54,7 @@ div.knob-container {
 }*/
 
 div.rectangle {
-    min-height: 50px;
+    min-height: 100px;
     background-color: #428bca; /* green: #5cb85c;*/ /* blue: #87CEEB;*/
     float: right;
 }
@@ -68,4 +68,12 @@ div.controls-container {
 }
 .left-buffer {
     margin-left: 10px;
+}
+
+.realbig {
+    font-size: 450%;
+}
+
+.realrealbig {
+    font-size: 1200%;
 }
